@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pl">
+<link href="https://fonts.googleapis.com/css?family=Mali" rel="stylesheet" type="text/css">
+<style>
+h1{
+    font-family: Mali, monospace
+}
+</style>
+<head>
+
+<meta charset="utf-8">
+<title> Dobry dzień </title>
+<meta name="Autor" content="Paweł Jagusztyn">
+</head>
+<body>
+
+<h1>Dobry dzień</h1>
+<img src="https://i.kym-cdn.com/photos/images/original/001/182/912/02f.jpg" alt "Pepo mądry">
+
+<script language="javascript">
+    var timerID = null;
+    var timerRunning = false;
+    function stopclock()
+    {
+        if(timerRunning)
+            clearTimeout(timerID)
+        timerRunning = false;
+    }
+    
+    function startclock()
+    {
+        stopclock();
+        showtime();
+    }
+    
+    function showtime()
+    {
+        var now = new Date();
+        var hours = now.getHours();
+        var minutes = now.getMinutes();
+        var seconds = now.getSeconds();
+        var timeValue = "" + ((hours > 12) ? hours - 12 : hours);
+        timeValue  += ((minutes < 10) ? ":0" : ":") + minutes;
+        timeValue  += ((seconds < 10) ? ":0" : ":") + seconds;
+        timeValue  += (hours >= 12) ? " P.M." : " A.M.";
+        document.clock.face.value = timeValue;
+        timerID = setTimeout("showtime()",1000);
+        timerRunning = true;
+    }
+    </script>
+    
+    <form name="clock" onSubmit="0">
+      <input type="text" name="face" size="24">
+    </form>
+    
+    <script>startclock();</script>
+</body>
+</html>
